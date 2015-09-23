@@ -1,43 +1,24 @@
 <android.support.v4.widget.DrawerLayout
-    android:id="@+id/id_drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dl_main_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <LinearLayout
-        android:id="@+id/id_main_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <!-- 内容布局-->
+    <include
+        android:id="@+id/relativeLayoutMainContent"
+        layout="@layout/activity_main_navigation_content" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/id_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:fitsSystemWindows="true"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-        <TextView
-            android:id="@+id/id_tv_content"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="HelloWorld"
-            android:textSize="30sp"/>
-    </LinearLayout>
-
+    <!-- 抽屉导航-->
     <android.support.design.widget.NavigationView
-        android:id="@+id/id_nv_menu"
+        android:id="@+id/nv_main_navigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/header_just_username"
-        app:menu="@menu/menu_drawer" />
+        app:headerLayout="@layout/activity_main_navigation_header"
+        app:menu="@menu/drawer_view" />
 
 </android.support.v4.widget.DrawerLayout>

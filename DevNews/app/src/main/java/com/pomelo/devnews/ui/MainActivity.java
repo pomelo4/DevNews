@@ -1,6 +1,10 @@
 package com.pomelo.devnews.ui;
 
+import android.content.BroadcastReceiver;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -11,30 +15,70 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.pomelo.devnews.R;
+import com.pomelo.devnews.base.Initialable;
+import com.pomelo.devnews.ui.fragment.BackFragment;
+import com.pomelo.devnews.ui.fragment.MobileFragment;
 import com.pomelo.devnews.utils.StatusBarCompat;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-    private DrawerLayout mDrawerLayout;
-    private NavigationView mNavigationView;
+public class MainActivity extends AppCompatActivity implements Initialable {
+
+    @Bind(R.id.dl_main_drawer)
+    DrawerLayout mDrawerLayout;
+
+    @Bind(R.id.tabs)
+    TabLayout mTabLayout;
+
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
+
+    @Bind(R.id.nv_main_navigation)
+    NavigationView mNavigationView;
+
+    // 接收网络状态广播
+    private BroadcastReceiver netStateReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.id_drawer_layout);
-        mNavigationView = (NavigationView) findViewById(R.id.id_nv_menu);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.id_toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
         StatusBarCompat.compat(this);
 
+        initView();
+        initData();
+    }
+
+    @Override
+    public void initView() {
         final ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
 
-        setupDrawerContent(mNavigationView);
+        if (mNavigationView != null) {
+            setupDrawerContent(mNavigationView);
+        }
+
+        replaceFragment(R.id.frame_container, new BackFragment());
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    public TabLayout getTabLayout() {
+        return mTabLayout;
+    }
+
+    public void replaceFragment(int id_content, Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(id_content, fragment);
+        transaction.commit();
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -60,11 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home)
-        {
+        if(item.getItemId() == android.R.id.home) {
             mDrawerLayout.openDrawer(GravityCompat.START);
             return true ;
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
