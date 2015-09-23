@@ -3,31 +3,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_mobile"
             android:icon="@drawable/ic_dashboard"
-            android:title="Home"/>
+            android:title="移动开发"/>
         <item
-            android:id="@+id/nav_messages"
+            android:id="@+id/nav_back"
             android:icon="@drawable/ic_event"
-            android:title="Messages"/>
+            android:title="后端开发"/>
         <item
-            android:id="@+id/nav_friends"
+            android:id="@+id/nav_happy"
             android:icon="@drawable/ic_headset"
-            android:title="Friends"/>
-        <item
-            android:id="@+id/nav_discussion"
-            android:icon="@drawable/ic_forum"
-            android:title="Discussion"/>
+            android:title="休息一下"/>
     </group>
 
-    <item android:title="Sub items">
+    <item android:title="">
         <menu>
             <item
                 android:icon="@drawable/ic_dashboard"
-                android:title="Sub item 1"/>
-            <item
-                android:icon="@drawable/ic_forum"
-                android:title="Sub item 2"/>
+                android:title="设置"/>
         </menu>
     </item>
 

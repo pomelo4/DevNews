@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.pomelo.devnews.R;
 import com.pomelo.devnews.base.Initialable;
 import com.pomelo.devnews.ui.fragment.BackFragment;
+import com.pomelo.devnews.ui.fragment.HappyFragment;
 import com.pomelo.devnews.ui.fragment.MobileFragment;
 import com.pomelo.devnews.utils.StatusBarCompat;
 
@@ -82,17 +83,29 @@ public class MainActivity extends AppCompatActivity implements Initialable {
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        switch (menuItem.getItemId()) {
+                            case R.id.nav_mobile:
+                                replaceFragment(R.id.frame_container, new MobileFragment());
+                                return true;
 
-        new NavigationView.OnNavigationItemSelectedListener() {
+                            case R.id.nav_back:
+                                replaceFragment(R.id.frame_container, new BackFragment());
+                                return true;
 
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-                return true;
-            }
-        };
+                            case R.id.nav_happy:
+                                replaceFragment(R.id.frame_container, new HappyFragment());
+                                return true;
 
+                        }
+                        return true;
+                    }
+                });
     }
 
     @Override

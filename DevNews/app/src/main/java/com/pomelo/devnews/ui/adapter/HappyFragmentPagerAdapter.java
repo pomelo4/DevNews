@@ -4,24 +4,24 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.pomelo.devnews.ui.fragment.AndroidFragment;
-import com.pomelo.devnews.ui.fragment.iOSFragment;
+import com.pomelo.devnews.ui.fragment.PictureFragment;
+import com.pomelo.devnews.ui.fragment.VideoFragment;
 
-public class MobileTabFragmentPagerAdapter extends FragmentStatePagerAdapter {
+public class HappyFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
-    private String[] tabs = {"ANDROID", "IOS"};
+    String[] tabs = {"妹子图", "小视频"};
 
-    public MobileTabFragmentPagerAdapter(FragmentManager fm) {
+    public HappyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
-    public Fragment getItem(int position) {
-        switch (position) {
+    public Fragment getItem(int index) {
+        switch (index) {
             case 0:
-                return new AndroidFragment();
+                return new PictureFragment();
             case 1:
-                return new iOSFragment();
+                return new VideoFragment();
         }
         return null;
     }
