@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements Initialable {
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
-        StatusBarCompat.compat(this);
 
         initView();
         initData();

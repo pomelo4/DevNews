@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dl_main_drawer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-    <!-- 内容布局-->
+    <!-- 你的内容布局-->
     <include
         android:id="@+id/relativeLayoutMainContent"
         layout="@layout/activity_main_navigation_content" />
@@ -13,10 +14,9 @@
     <!-- 抽屉导航-->
     <android.support.design.widget.NavigationView
         android:id="@+id/nv_main_navigation"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
         app:headerLayout="@layout/activity_main_navigation_header"
         app:menu="@menu/drawer_view" />
 
