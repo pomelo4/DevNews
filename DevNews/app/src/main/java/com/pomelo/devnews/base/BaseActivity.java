@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.pomelo.devnews.R;
+import com.pomelo.devnews.loader.ImageLoader;
 import com.pomelo.devnews.net.RequestManager;
 import com.pomelo.devnews.utils.AppManager;
 import com.pomelo.devnews.utils.ShowToast;

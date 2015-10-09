@@ -23,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.ImageDetailActivity" />
+        <activity android:name=".ui.VideoDetailActivity" />
+        <activity android:name=".ui.SettingActivity"
+            android:theme="@style/OtherAppTheme"/>
     </application>
 
 </manifest>

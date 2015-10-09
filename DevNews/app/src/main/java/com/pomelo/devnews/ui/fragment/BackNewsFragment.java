@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.pomelo.devnews.R;
+import com.pomelo.devnews.base.AppApplication;
 import com.pomelo.devnews.base.BaseFragment;
 import com.pomelo.devnews.callback.LoadFinishCallBack;
 import com.pomelo.devnews.constant.ToastMsg;
@@ -99,7 +100,7 @@ public abstract class BackNewsFragment extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mImageLoader = ImageLoader.build(getActivity());
+        mImageLoader = AppApplication.getImageLoader();;
         mRecyclerView.setOnPauseListenerParams(mImageLoader, false, true);
 
         mAdapter = new BackNewsAdapter();

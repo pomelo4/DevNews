@@ -29,6 +29,7 @@ import com.pomelo.devnews.loader.ImageLoader;
 import com.pomelo.devnews.model.Video;
 import com.pomelo.devnews.net.JSONParser;
 import com.pomelo.devnews.net.Request4Video;
+import com.pomelo.devnews.ui.VideoDetailActivity;
 import com.pomelo.devnews.utils.NetWorkUtil;
 import com.pomelo.devnews.utils.ShowToast;
 import com.pomelo.devnews.view.AutoLoadRecyclerView;
@@ -158,38 +159,12 @@ public class VideoFragment extends BaseFragment {
 
             mImageLoader.bindBitmap(video.getImgUrl(), holder.img, mImageWidth, mImageHeight);
 
-//            holder.img_share.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    new MaterialDialog.Builder(getActivity())
-//                            .items(R.array.joke_dialog)
-//                            .itemsCallback(new MaterialDialog.ListCallback() {
-//                                @Override
-//                                public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-//
-//                                    switch (which) {
-//                                        //分享
-//                                        case 0:
-//                                            ShareUtil.shareText(getActivity(), video
-//                                                    .getTitle().trim() + " " + video.getUrl() +
-//                                                    ToastMsg
-//                                                            .SHARE_TAIL);
-//                                            break;
-//                                        //复制
-//                                    }
-//
-//                                }
-//                            })
-//                            .show();
-//                }
-//            });
-
             holder.card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent = new Intent(getActivity(), VideoDetailActivity.class);
-//                    intent.putExtra("url", video.getUrl());
-//                    startActivity(intent);
+                    Intent intent = new Intent(getActivity(), VideoDetailActivity.class);
+                    intent.putExtra("url", video.getUrl());
+                    startActivity(intent);
                 }
             });
 

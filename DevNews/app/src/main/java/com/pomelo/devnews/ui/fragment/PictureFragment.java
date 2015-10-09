@@ -20,6 +20,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.pomelo.devnews.R;
+import com.pomelo.devnews.base.AppApplication;
 import com.pomelo.devnews.base.BaseFragment;
 import com.pomelo.devnews.cache.PictureCacheUtil;
 import com.pomelo.devnews.callback.LoadFinishCallBack;
@@ -28,6 +29,7 @@ import com.pomelo.devnews.loader.ImageLoader;
 import com.pomelo.devnews.model.Picture;
 import com.pomelo.devnews.net.JSONParser;
 import com.pomelo.devnews.net.Request4Picture;
+import com.pomelo.devnews.ui.ImageDetailActivity;
 import com.pomelo.devnews.utils.NetWorkUtil;
 import com.pomelo.devnews.utils.ShowToast;
 import com.pomelo.devnews.utils.TextUtil;
@@ -106,7 +108,7 @@ public class PictureFragment extends BaseFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		mImageLoader = mImageLoader.build(getActivity());
+		mImageLoader = AppApplication.getImageLoader();
 		mRecyclerView.setOnPauseListenerParams(mImageLoader, false, true);
 
 		mAdapter = new PictureAdapter();
@@ -158,20 +160,6 @@ public class PictureFragment extends BaseFragment {
 			holder.progress.setProgress(0);
 			holder.progress.setVisibility(View.VISIBLE);
 
-//			imageLoader.displayImage(picUrl, holder.img, options, new
-//							SimpleImageLoadingListener() {
-//								@Override
-//								public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-//									super.onLoadingComplete(imageUri, view, loadedImage);
-//									holder.progress.setVisibility(View.GONE);
-//								}
-//							},
-//					new ImageLoadingProgressListener() {
-//						@Override
-//						public void onProgressUpdate(String imageUri, View view, int current, int total) {
-//							holder.progress.setProgress((int) (current * 100f / total));
-//						}
-//					});
 			mImageLoader.bindBitmap(picUrl, holder.img);
 			if (TextUtil.isNull(picture.getDesc().trim())) {
 				holder.tv_desc.setVisibility(View.GONE);
@@ -183,46 +171,16 @@ public class PictureFragment extends BaseFragment {
 			holder.img.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-//					Intent intent = new Intent(getActivity(), ImageDetailActivity.class);
-//
-//					intent.putExtra("who", picture.getWho());
-//					intent.putExtra("url", picture.getUrl());
-//
-//					startActivity(intent);
+					Intent intent = new Intent(getActivity(), ImageDetailActivity.class);
+
+					intent.putExtra("url", picture.getUrl());
+
+					startActivity(intent);
 				}
 			});
 
 			holder.tv_who.setText(picture.getWho());
-//			holder.tv_time.setText(String2TimeUtil.dateString2GoodExperienceFormat(picture.getPublishedAt()));
 			holder.tv_time.setText(picture.getDesc());
-
-//			holder.img_share.setOnClickListener(new View.OnClickListener() {
-//				@Override
-//				public void onClick(View v) {
-//					new MaterialDialog.Builder(getActivity())
-//							.items(R.array.picture_dialog)
-//							.itemsCallback(new MaterialDialog.ListCallback() {
-//								@Override
-//								public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-//
-//									switch (which) {
-//										//分享
-//										case 0:
-//											ShareUtil.sharePicture(getActivity(), picture
-//													.getPics()[0]);
-//											break;
-//										//保存
-//										case 1:
-//											FileUtil.savePicture(getActivity(), picture
-//													.getPics()[0]);
-//											break;
-//									}
-//
-//								}
-//							})
-//							.show();
-//				}
-//			});
 
 			setAnimation(holder.card, position);
 

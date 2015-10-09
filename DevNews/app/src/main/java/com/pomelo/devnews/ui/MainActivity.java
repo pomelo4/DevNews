@@ -1,6 +1,7 @@
 package com.pomelo.devnews.ui;
 
 import android.content.BroadcastReceiver;
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -92,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements Initialable {
                             case R.id.nav_mobile:
                                 replaceFragment(R.id.frame_container, new MobileFragment());
                                 return true;
-
                             case R.id.nav_back:
                                 replaceFragment(R.id.frame_container, new BackFragment());
                                 return true;
@@ -100,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements Initialable {
                             case R.id.nav_happy:
                                 replaceFragment(R.id.frame_container, new HappyFragment());
                                 return true;
+                            case R.id.nav_setting:
+                                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                                startActivity(intent);
+                                break;
 
                         }
                         return true;
